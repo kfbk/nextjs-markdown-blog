@@ -1,0 +1,75 @@
+Next.jsを利用した初めての本格的Markdownブログサイトの構築
+https://reffect.co.jp/react/nextjs-markdown-blog
+							2023/03/03 start
+1 Next.jsの準備
+1.1 プロジェクトの作成
+	npx create-next-app@latest nextjs-markdown-blog
+		色々聞かれるけど、全部EnterでOK
+	cd nextjs-markdown-blog
+	npm run dev
+
+1.2 Tailwind CSSの設定
+	npm install -D tailwindcss postcss autoprefixer
+	npx tailwindcss init -p
+
+2 ブログサイトの構築
+2.1 レイアウトの設定
+2.2 記事一覧ページの作成
+22.1 Markdownファイルの作成
+2.2.2 mdファイル情報の取得
+2.2.3 gray-matterの設定
+	npm install gray-matter
+2.2.4 propsで渡す値の設定
+2.2.5 PostCardコンポーネントの作成
+2.2.6 記事のイメージ画像の設定
+
+2.3 記事ページの表示
+2.3.1 ページコンポーネントの作成
+2.3.2 getStaticPathの設定
+2.3.3 slugの取得
+2.3.4 記事内容の取得
+
+2.4 MarkdownからHTMLへの変換
+2.4.1 markedの利用
+2.4.2 markdown-itの利用
+	npm install markdown-it	これを使う
+2.4.3 react-markの利用
+	npm install react-mark	これを使いたいが、エラーになる
+2.4.4 remark, rehypeの利用
+2.4.5 mdast, hastの内容
+
+2.5 スタイルの適用
+	npm install -D @tailwindcss/typography
+
+2.6 Front Matterの画像の表示
+
+2.7 記事の追加
+
+2.8 記事の日付順表示
+
+2.9 SEOの設定(metaタグの設定:next-seo)				<-- ここから
+
+2.10 目次の追加
+
+2.11 コードのハイライト
+
+2.12 リンクでnext/linkを利用
+2.12.1 useEffect, useStateを利用した場合
+2.12.2 aタグからLinkタグへの変換
+
+2.13 画像にnext/imgを利用
+
+2.14 カテゴリー一覧ページの設定
+
+2.15 サイドバーに目次表示
+
+2.16 ページネーションの実装
+2.16.1 ページの追加
+2.16.2 ページネーションの理解
+2.16.3 ページネーションの実装
+2.16.4 Paginationコンポーネント
+
+2.17 カスタムコード機能
+2.17.1 プラグインの作成
+2.17.2 childrenを追加
+
