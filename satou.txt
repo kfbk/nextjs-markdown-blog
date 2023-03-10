@@ -1,6 +1,10 @@
 Next.jsを利用した初めての本格的Markdownブログサイトの構築
 https://reffect.co.jp/react/nextjs-markdown-blog
 							2023/03/03 start
+注意：_app.jsの記事が間違っている
+	誤	import Layout from '../components/layout';
+	正	import Layout from '../components/Layout';
+
 1 Next.jsの準備
 1.1 プロジェクトの作成
 	npx create-next-app@latest nextjs-markdown-blog
@@ -47,27 +51,52 @@ https://reffect.co.jp/react/nextjs-markdown-blog
 
 2.8 記事の日付順表示
 
-2.9 SEOの設定(metaタグの設定:next-seo)				<-- ここから
+---ここから Netlify へのデプロイ
+githubにリポジトリを用意
+	http	https://github.com/kfbk/nextjs-markdown-blog.git
+githubにプッシュ
+	git init
+	git remote add origin https://github.com/kfbk/nextjs-markdown-blog.git
+	git branch -M main
+	git push -u origin main		Nextjsの初期画面が表示される
+	git add .
+	git commit -m "first"
+	git push -u origin main
+Netlfy
+	Newして選んで、次の設定は変えず
+		git push -u origin main
+		.next
+	失敗。--> Vercelでデプロイ時 Layoutを直したら、ここもOKになった
+	https://inspiring-brigadeiros-f6a83c.netlify.app/
+Vercel（_app.jsの layout-->Layout 変更してOK）
+	Vercelを開いてGitHubのリポジトリ「nextjs-blog」を「Import」します。
+	https://nextjs-markdown-blog-l89znfe3m-kfbk.vercel.app/
+---ここまで
 
-2.10 目次の追加
+2.9 SEOの設定(metaタグの設定:next-seo)			<-- skip
 
-2.11 コードのハイライト
+2.10 目次の追加						<-- skip
 
-2.12 リンクでnext/linkを利用
+2.11 コードのハイライト					<-- skip
+
+2.12 リンクでnext/linkを利用				<-- skip
+	npm install rehype-parse rehype-react
 2.12.1 useEffect, useStateを利用した場合
 2.12.2 aタグからLinkタグへの変換
 
-2.13 画像にnext/imgを利用
+2.13 画像にnext/imgを利用				<-- skip
 
-2.14 カテゴリー一覧ページの設定
+2.14 カテゴリー一覧ページの設定				<-- skip
 
-2.15 サイドバーに目次表示
+2.15 サイドバーに目次表示				<-- skip
 
-2.16 ページネーションの実装
+2.16 ページネーションの実装				<-- ここから
 2.16.1 ページの追加
 2.16.2 ページネーションの理解
 2.16.3 ページネーションの実装
 2.16.4 Paginationコンポーネント
+
+/(ルート)にアクセスした場合にもページネーションが表示されるようにindex.jsを更新		<-- skip
 
 2.17 カスタムコード機能
 2.17.1 プラグインの作成
