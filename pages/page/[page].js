@@ -5,9 +5,11 @@ import PostCard from '../../components/PostCard';
 
 const PAGE_SIZE = 2;
 
+// Array.from：第1引数の配列を1つずつ第2引数に渡し、その戻り値から新たな配列を作る
 const range = (start, end, length = end - start + 1) =>
   Array.from({ length }, (_, i) => start + i);
 
+// ページに表示する記事の情報を取得
 export async function getStaticProps({ params }) {
   const current_page = params.page;
   const files = fs.readdirSync('posts');
@@ -42,6 +44,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
+// ページネーションのページを作成する
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
   const count = files.length;

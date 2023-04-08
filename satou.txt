@@ -9,6 +9,13 @@ https://reffect.co.jp/react/nextjs-markdown-blog
 1.1 プロジェクトの作成
 	npx create-next-app@latest nextjs-markdown-blog
 		色々聞かれるけど、全部EnterでOK
+		√ Would you like to use TypeScript with this project? ... No / Yes
+		√ Would you like to use ESLint with this project? ... No / Yes
+		√ Would you like to use `src/` directory with this project? ... No / Yes
+		? Would you like to use experimental `app/` directory with this project? >> No / Ye√ Would you like to use experimental `app/` directory with this project? ... No / Yes
+		√ What import alias would you like configured? ... @/*
+		Creating a new Next.js app in C:\Users\user\git\nextjs-.
+		Using npm.
 	cd nextjs-markdown-blog
 	npm run dev
 
@@ -36,10 +43,11 @@ https://reffect.co.jp/react/nextjs-markdown-blog
 2.4 MarkdownからHTMLへの変換
 2.4.1 markedの利用
 2.4.2 markdown-itの利用
-	npm install markdown-it	これを使う
+	npm install markdown-it	これを使っていたが、あとあと、remarkが良いみたい
 2.4.3 react-markの利用
 	npm install react-mark	これを使いたいが、エラーになる
-2.4.4 remark, rehypeの利用
+2.4.4 remark, rehypeの利用	これを利用する
+	npm install unified remark-parse remark-rehype rehype-stringify
 2.4.5 mdast, hastの内容
 
 2.5 スタイルの適用
@@ -66,39 +74,58 @@ Netlfy
 	Newして選んで、次の設定は変えず
 		git push -u origin main
 		.next
-	失敗。--> Vercelでデプロイ時 Layoutを直したら、ここもOKになった
+	失敗。--> Vercelでデプロイ時 _app.jsのLayoutを直したら、ここもOKになった
 	https://inspiring-brigadeiros-f6a83c.netlify.app/
 Vercel（_app.jsの layout-->Layout 変更してOK）
 	Vercelを開いてGitHubのリポジトリ「nextjs-blog」を「Import」します。
-	https://nextjs-markdown-blog-l89znfe3m-kfbk.vercel.app/
+	https://nextjs-markdown-blog-ruby.vercel.app/
 ---ここまで
 
-2.9 SEOの設定(metaタグの設定:next-seo)			<-- skip
+2.9 SEOの設定(metaタグの設定:next-seo)
+	npm install next-seo
 
-2.10 目次の追加						<-- skip
+2.10 目次の追加（remarkが必要）
+	npm install remark-toc
+	1つのMDファイルの中で、##や###を拾い出して、「## Table of Contents」の下に書き加える
+	「目次」の日本語化以下、skip
 
-2.11 コードのハイライト					<-- skip
+2.11 コードのハイライト（remarkが必要）
+	npm install remark-prism
+	以下、少しskip
 
 2.12 リンクでnext/linkを利用				<-- skip
-	npm install rehype-parse rehype-react
+
 2.12.1 useEffect, useStateを利用した場合
 2.12.2 aタグからLinkタグへの変換
 
 2.13 画像にnext/imgを利用				<-- skip
 
-2.14 カテゴリー一覧ページの設定				<-- skip
+2.14 カテゴリー一覧ページの設定	
 
 2.15 サイドバーに目次表示				<-- skip
+	grid-cols-12で縦を12のコラムに分け、記事の内容には9コラムの幅、サイドバーには3コラムの幅を設定
 
-2.16 ページネーションの実装				<-- ここから
+2.16 ページネーションの実装
 2.16.1 ページの追加
 2.16.2 ページネーションの理解
 2.16.3 ページネーションの実装
 2.16.4 Paginationコンポーネント
 
 /(ルート)にアクセスした場合にもページネーションが表示されるようにindex.jsを更新		<-- skip
+	この更新は、[page].jsやその他に似ており、redirectするようにできないか？
+	参照 --> next-redirect
 
-2.17 カスタムコード機能
-2.17.1 プラグインの作成
-2.17.2 childrenを追加
+---ここでPush
+	git add .
+	git commit -m "2nd"
+	git push -u origin main
+　　Netlfy・Vercelは、共にOK
+---ここまで来たのは2度目（2023/04/05）。「SEOの設定」等をした。次の2つの目的がある
+	１．ポートフォリオを作る。
+	２．「1日遅れの日記」は「Nuxt2＋microCMS」で作っており、写真をUPすると使用容量がふえることから
+	　　ローカルで作ることにした。１をコピーして新たな場所（diarydaylate2）を作る
+
+2.17 カスタムコード機能				<-- skip
+2.17.1 プラグインの作成				<-- skip
+2.17.2 childrenを追加				<-- skip
 

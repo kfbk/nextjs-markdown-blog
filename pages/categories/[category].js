@@ -34,7 +34,7 @@ export const getStaticProps = ({ params }) => {
 export const getStaticPaths = () => {
   // 利用可能なカテゴリー
   // markdownファイルから取得して設定もできる
-  const categories = ['react', 'laravel'];
+  const categories = ['DIY', '読書'];
   const paths = categories.map((category) => ({ params: { category } }));
 
   return {

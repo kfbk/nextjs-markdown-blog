@@ -4,18 +4,18 @@ import Image from 'next/image';
 const PostCard = ({ post }) => {
   return (
     <Link href={`/posts/${post.slug}`}>
-      <div className="border round-lg">
+      <div className="border rounded-lg">
         {/* height={10} 比率は無視される */}
         <Image
           src={`/${post.frontMatter.image}`}
-          width={800}
+          width={500}
           height={10}
           alt={post.frontMatter.title}
         />
       </div>
       <div className="px-2 py-4">
         <h1 className="font-bold text-lg">
-          <span>{post.frontMatter.title}</span>
+          {post.frontMatter.title}
         </h1>
         <span>{post.frontMatter.date}</span>
       </div>

@@ -1,12 +1,18 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 // import ReactMarkdown from 'react-markdown';
-import markdownit from 'markdown-it';
+// import markdownit from 'markdown-it';
 import Image from 'next/image';
 import Link from 'next/link';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify'
+import remarkToc from 'remark-toc';
 
-// 記事の内容について記事一覧と同様にここを利用して取得
+//--------------------------------
 // 2番目に呼ばれる
+// 記事の内容について記事一覧と同様にここを利用して取得
 // paramsには下記pathsで指定した値が入る（1postずつ）
 // 疑問：どこで１つが選ばれるのか
 export async function getStaticProps({ params }) {
@@ -17,13 +23,21 @@ export async function getStaticProps({ params }) {
   // console.log(file);
   // return { props: { post: '' } };
   const { data, content } = matter(file);
-  return { props: { frontMatter: data, content } };
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkToc)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .process(content);
+    // console.log('html:', result.toString());
+  return { props: { frontMatter: data, content: result.toString()  } };
 }
 
+//--------------------------------
+// 1番目に呼ばれる
 // ダイナミックルーティングを利用している場合は
 // getStaticPropsに加えてここの設定が必要
 // 個別の記事ページのパスを得る
-// 1番目に呼ばれる
 export async function getStaticPaths() {
   // console.log("getStaticPaths")
   const files = fs.readdirSync('posts');
@@ -59,7 +73,9 @@ export async function getStaticPaths() {
   };
 }
 
+//--------------------------------
 // 3番目に呼ばれる
+// ここのメイン
 // 2番目に呼ばれたgetStaticPropsから取得した引数
 const Post = ({ frontMatter, content }) => {
   // console.log("frontMatter=", frontMatter)
@@ -78,6 +94,7 @@ const Post = ({ frontMatter, content }) => {
       <div className="space-x-2">
         {frontMatter.categories.map((category) => (
           <span key={category}>
+            カテゴリー：
             <Link href={`/categories/${category}`}>
               {category}
             </Link>
@@ -85,7 +102,8 @@ const Post = ({ frontMatter, content }) => {
         ))}
       </div>
       {/* {toReactNode(content)}  aタグをLinkタグに変換 */}
-      <div dangerouslySetInnerHTML={{ __html: markdownit().render(content) }}></div>
+      {/* <div dangerouslySetInnerHTML={{ __html: markdownit().render(content) }}></div> */}
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
   );
 };
