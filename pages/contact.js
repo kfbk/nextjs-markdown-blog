@@ -1,10 +1,11 @@
 export default function Contact() {
   return (
     <>
-      <form name="contact" method="POST" 
-        action="/thankyou"
-        netlify-honeypot="bot-field" netlify
+      <form name="contact" method="POST"
+        data-netlify="true"
       >
+        {/* action="/thankyou" */}
+        {/* netlify-honeypot="bot-field" netlify */}
         <input type="hidden" name="form-name" value="contact" />
         <p className="mt-2">
           <label className="block float-left w-20">
