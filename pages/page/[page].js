@@ -3,7 +3,7 @@ import matter from 'gray-matter';
 import Pagination from '../../components/Pagination';
 import PostCard from '../../components/PostCard';
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 6;
 
 // Array.from：第1引数の配列を1つずつ第2引数に渡し、その戻り値から新たな配列を作る
 const range = (start, end, length = end - start + 1) =>
