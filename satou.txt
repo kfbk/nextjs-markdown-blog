@@ -120,6 +120,8 @@ Vercel（_app.jsの layout-->Layout 変更してOK）
 	git commit -m "2nd"
 	git push -u origin main
 　　Netlfy・Vercelは、共にOK
+	Netlfy：https://satouportfolio.netlify.app
+	Vercel：削除
 ---ここまで来たのは2度目（2023/04/05）。「SEOの設定」等をした。次の2つの目的がある
 	１．ポートフォリオを作る。
 	２．「1日遅れの日記」は「Nuxt2＋microCMS」で作っており、写真をUPすると使用容量がふえることから
