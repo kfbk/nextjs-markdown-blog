@@ -91,7 +91,7 @@ const Post = ({ frontMatter, content }) => {
       </div>
       <h1 className="mt-12">{frontMatter.title}</h1>
       <span>{frontMatter.date}</span>
-      <div className="space-x-2">
+      {/* <div className="space-x-2">
         {frontMatter.categories.map((category) => (
           <span key={category}>
             カテゴリー：
@@ -100,7 +100,7 @@ const Post = ({ frontMatter, content }) => {
             </Link>
           </span>
         ))}
-      </div>
+      </div> */}
       {/* {toReactNode(content)}  aタグをLinkタグに変換 */}
       {/* <div dangerouslySetInnerHTML={{ __html: markdownit().render(content) }}></div> */}
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
